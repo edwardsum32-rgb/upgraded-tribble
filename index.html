@@ -135,6 +135,58 @@
             margin: 40px 0;
         }
         
+        /* MUSIC PLAYER STYLES */
+        .music-player {
+            margin: 40px 0;
+        }
+        
+        .music-btn {
+            background: #4a6fa5;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 5px;
+        }
+        
+        .music-btn:hover {
+            background: #345d8c;
+            transform: translateY(-2px);
+        }
+        
+        #volumeSlider {
+            -webkit-appearance: none;
+            height: 8px;
+            border-radius: 4px;
+            background: #ddd;
+            outline: none;
+            width: 100%;
+            margin: 10px 0;
+        }
+        
+        #volumeSlider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #4a6fa5;
+            cursor: pointer;
+        }
+        
+        .music-controls {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
         /* RESPONSIVE */
         @media (max-width: 600px) {
             .container {
@@ -148,6 +200,16 @@
             
             h2 {
                 font-size: 1.5rem;
+            }
+            
+            .music-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .music-btn {
+                width: 200px;
+                justify-content: center;
             }
         }
     </style>
@@ -181,6 +243,64 @@
                 <li><i class="fas fa-bolt"></i> <strong>Performance Optimization</strong> - Faster loading times</li>
                 <li><i class="fas fa-shield-alt"></i> <strong>Security Updates</strong> - Protection from threats</li>
             </ul>
+        </section>
+        
+        <hr>
+        
+        <!-- MUSIC PLAYER SECTION -->
+        <section class="music-player">
+            <h2><i class="fas fa-music"></i> Background Music</h2>
+            <p>Enjoy relaxing music while exploring our services:</p>
+            
+            <div style="background: #f8f9fa; padding: 25px; border-radius: 10px; margin: 20px 0;">
+                <!-- Audio Player -->
+                <audio id="backgroundMusic" controls style="width: 100%;">
+                    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                    <source src="https://assets.mixkit.co/music/preview/mixkit-tech-house-vibes-130.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                
+                <!-- Control Buttons -->
+                <div class="music-controls">
+                    <button onclick="playMusic()" class="music-btn">
+                        <i class="fas fa-play"></i> Play
+                    </button>
+                    <button onclick="pauseMusic()" class="music-btn">
+                        <i class="fas fa-pause"></i> Pause
+                    </button>
+                    <button onclick="stopMusic()" class="music-btn">
+                        <i class="fas fa-stop"></i> Stop
+                    </button>
+                    <button onclick="restartMusic()" class="music-btn">
+                        <i class="fas fa-redo"></i> Restart
+                    </button>
+                </div>
+                
+                <!-- Volume Control -->
+                <div style="margin-top: 20px;">
+                    <label style="display: block; margin-bottom: 10px; font-weight: bold;">
+                        <i class="fas fa-volume-up"></i> Volume Control:
+                        <span id="volumeText" style="color: #4a6fa5;">50%</span>
+                    </label>
+                    <input type="range" id="volumeSlider" min="0" max="100" value="50">
+                </div>
+                
+                <!-- Help Text -->
+                <div style="margin-top: 20px; padding: 15px; background: #e8f4f8; border-radius: 8px; border-left: 4px solid #4a6fa5;">
+                    <p style="margin: 0; font-size: 14px; color: #2c3e50;">
+                        <i class="fas fa-info-circle"></i> 
+                        <strong>Tips:</strong> If no sound, check your device volume and ensure browser audio isn't muted.
+                    </p>
+                </div>
+                
+                <!-- Song Info -->
+                <div style="margin-top: 15px; text-align: center;">
+                    <p style="font-size: 13px; color: #666;">
+                        <i class="fas fa-headphones"></i> 
+                        Now Playing: <strong>SoundHelix Song 1</strong> (Royalty-free music)
+                    </p>
+                </div>
+            </div>
         </section>
         
         <hr>
@@ -227,6 +347,99 @@
     <footer style="text-align: center; margin-top: 40px; color: white; padding: 20px;">
         <p>&copy; 2024 My Service Website. All rights reserved.</p>
         <p>Professional Web Development Services</p>
+        <p style="font-size: 14px; margin-top: 10px; opacity: 0.8;">
+            <i class="fas fa-music"></i> Background music provided by SoundHelix
+        </p>
     </footer>
+
+    <!-- MUSIC PLAYER JAVASCRIPT -->
+    <script>
+        // Get audio element and controls
+        const audio = document.getElementById('backgroundMusic');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const volumeText = document.getElementById('volumeText');
+        
+        // Set initial volume to 50%
+        audio.volume = 0.5;
+        
+        // Play music function
+        function playMusic() {
+            audio.play().catch(error => {
+                console.log("Play error:", error);
+                // Show user-friendly message
+                if (error.name === 'NotAllowedError') {
+                    alert('Please click the play button on the audio player above. Some browsers require manual play.');
+                }
+            });
+        }
+        
+        // Pause music function
+        function pauseMusic() {
+            audio.pause();
+        }
+        
+        // Stop music function (pause and reset to start)
+        function stopMusic() {
+            audio.pause();
+            audio.currentTime = 0;
+        }
+        
+        // Restart music function
+        function restartMusic() {
+            audio.currentTime = 0;
+            audio.play().catch(e => console.log("Restart error:", e));
+        }
+        
+        // Update volume function
+        function updateVolume(value) {
+            const volume = value / 100;
+            audio.volume = volume;
+            volumeText.textContent = value + '%';
+            
+            // Visual feedback
+            if (value == 0) {
+                volumeText.innerHTML = '<i class="fas fa-volume-mute"></i> 0%';
+            } else if (value < 30) {
+                volumeText.innerHTML = '<i class="fas fa-volume-down"></i> ' + value + '%';
+            } else {
+                volumeText.innerHTML = '<i class="fas fa-volume-up"></i> ' + value + '%';
+            }
+        }
+        
+        // Initialize volume slider
+        volumeSlider.addEventListener('input', function() {
+            updateVolume(this.value);
+        });
+        
+        // Set initial volume display
+        updateVolume(50);
+        
+        // Auto-play when user interacts (optional - can be removed)
+        let hasInteracted = false;
+        document.addEventListener('click', function initAudio() {
+            if (!hasInteracted) {
+                // Optional: Remove the comment below to enable auto-play on first click
+                // audio.play().catch(e => console.log("Auto-play blocked"));
+                hasInteracted = true;
+                document.removeEventListener('click', initAudio);
+            }
+        });
+        
+        // Show current time and duration (optional enhancement)
+        audio.addEventListener('loadedmetadata', function() {
+            console.log("Audio loaded. Duration:", audio.duration, "seconds");
+        });
+        
+        // Log when audio ends
+        audio.addEventListener('ended', function() {
+            console.log("Audio finished playing");
+        });
+        
+        // Error handling
+        audio.addEventListener('error', function(e) {
+            console.error("Audio error:", e);
+            alert("There was an error loading the audio. Please try refreshing the page.");
+        });
+    </script>
 </body>
 </html>
