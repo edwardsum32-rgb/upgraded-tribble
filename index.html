@@ -5,18 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- TITLE TAG -->
-    <title>My Service Website</title>
+    <!-- TITLE -->
+    <title>My Service Website | Professional Web Development</title>
     
     <!-- SEO META TAGS -->
-    <meta name="description" content="Professional service website offering web development and design solutions.">
-    <meta name="keywords" content="web service, website design, development, HTML, CSS">
+    <meta name="description" content="Professional web development services: Website design, HTML/CSS coding, JavaScript functionality, and responsive mobile design.">
+    <meta name="keywords" content="web development, website design, HTML coding, CSS styling, JavaScript, responsive design">
     <meta name="author" content="Edward Sum">
     
     <!-- OPEN GRAPH -->
-    <meta property="og:title" content="My Service Website">
-    <meta property="og:description" content="Professional web development services">
-    <meta property="og:image" content="https://via.placeholder.com/1200x630">
+    <meta property="og:title" content="My Service Website - Professional Web Development">
+    <meta property="og:description" content="We create beautiful, functional websites using modern HTML, CSS, and JavaScript.">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630/4a6fa5/ffffff?text=Web+Development">
     <meta property="og:url" content="https://edwardsum32-rgb.github.io/upgraded-tribble/">
     <meta property="og:type" content="website">
     
@@ -27,49 +27,206 @@
 
     <!-- CSS STYLES -->
     <style>
-        body {
-            background-color: lightblue;
-            font-family: Arial, sans-serif;
-            padding: 30px;
-            text-align: center;
+        /* RESET & BASE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        /* HEADINGS */
         h1 {
             color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 3px solid #4a6fa5;
+            padding-bottom: 15px;
         }
+        
         h2 {
             color: #34495e;
-            margin-top: 30px;
+            font-size: 1.8rem;
+            margin: 30px 0 15px;
+            padding-left: 10px;
+            border-left: 4px solid #4a6fa5;
         }
+        
+        h3 {
+            color: #2c3e50;
+            font-size: 1.4rem;
+            margin: 25px 0 10px;
+        }
+        
+        /* PARAGRAPHS */
         p {
-            color: #333;
-            font-size: 16px;
-            max-width: 600px;
-            margin: auto;
+            color: #555;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            line-height: 1.8;
         }
+        
+        /* LISTS */
         ul {
-            list-style-position: inside;
-            padding: 0;
+            list-style-type: none;
+            margin: 20px 0;
+        }
+        
+        li {
+            background: #f8f9fa;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #4a6fa5;
+            font-size: 1.1rem;
+            transition: transform 0.3s;
+        }
+        
+        li:hover {
+            transform: translateX(10px);
+            background: #e9ecef;
+        }
+        
+        /* CONTACT INFO */
+        .contact-info {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            font-size: 1.1rem;
+        }
+        
+        .contact-item i {
+            color: #4a6fa5;
+            margin-right: 15px;
+            font-size: 1.3rem;
+            width: 30px;
+        }
+        
+        /* HORIZONTAL RULE */
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #4a6fa5, transparent);
+            margin: 40px 0;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
         }
     </style>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
-    <!-- YOUR CONTENT GOES HERE -->
-    <h1>Welcome to My Service Website</h1>
-    <h2>Professional Web Development Services</h2>
-    <p>We create beautiful, functional websites using modern HTML, CSS, and JavaScript.</p>
+    <div class="container">
+        <!-- HEADER -->
+        <header>
+            <h1>Welcome to My Service Website</h1>
+            <p>We create beautiful, functional websites using modern HTML, CSS, and JavaScript. Professional web development services tailored to your needs.</p>
+        </header>
+        
+        <hr>
+        
+        <!-- SERVICES -->
+        <section>
+            <h2>Our Services</h2>
+            <p>We offer a comprehensive range of web development services to help your business succeed online:</p>
+            
+            <ul>
+                <li><i class="fas fa-code"></i> <strong>Website Design & Development</strong> - Custom websites from scratch</li>
+                <li><i class="fas fa-mobile-alt"></i> <strong>Responsive Mobile Design</strong> - Perfect on all devices</li>
+                <li><i class="fab fa-html5"></i> <strong>HTML/CSS Coding</strong> - Clean, semantic code</li>
+                <li><i class="fab fa-js"></i> <strong>JavaScript Functionality</strong> - Interactive features</li>
+                <li><i class="fas fa-tools"></i> <strong>Website Maintenance</strong> - Updates and support</li>
+                <li><i class="fas fa-search"></i> <strong>SEO Optimization</strong> - Better Google rankings</li>
+                <li><i class="fas fa-bolt"></i> <strong>Performance Optimization</strong> - Faster loading times</li>
+                <li><i class="fas fa-shield-alt"></i> <strong>Security Updates</strong> - Protection from threats</li>
+            </ul>
+        </section>
+        
+        <hr>
+        
+        <!-- CONTACT -->
+        <section>
+            <h2>Contact Us</h2>
+            <p>Ready to start your project? Get in touch with us today!</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span><strong>Email:</strong> contact@example.com</span>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span><strong>Phone:</strong> (123) 456-7890</span>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <span><strong>Hours:</strong> Mon-Fri 9AM-6PM</span>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span><strong>Location:</strong> Available for remote work worldwide</span>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CALL TO ACTION -->
+        <section style="text-align: center; margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #4a6fa5, #166088); border-radius: 10px; color: white;">
+            <h2 style="color: white; border: none;">Ready to Get Started?</h2>
+            <p style="color: white;">Contact us today for a free consultation and quote.</p>
+            <a href="mailto:contact@example.com" style="display: inline-block; background: white; color: #4a6fa5; padding: 12px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 15px; transition: transform 0.3s;">
+                <i class="fas fa-paper-plane"></i> Send Message
+            </a>
+        </section>
+    </div>
     
-    <h2>Our Services</h2>
-    <ul>
-        <li>Website Design & Development</li>
-        <li>Responsive Mobile Design</li>
-        <li>HTML/CSS Coding</li>
-        <li>JavaScript Functionality</li>
-        <li>Website Maintenance</li>
-    </ul>
-    
-    <h2>Contact Us</h2>
-    <p>Email: contact@example.com</p>
-    <p>Phone: (123) 456-7890</p>
+    <!-- FOOTER -->
+    <footer style="text-align: center; margin-top: 40px; color: white; padding: 20px;">
+        <p>&copy; 2024 My Service Website. All rights reserved.</p>
+        <p>Professional Web Development Services</p>
+    </footer>
 </body>
 </html>
