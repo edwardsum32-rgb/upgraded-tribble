@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 30px;
+        }
+        .music-box {
+            background: #f0f8ff;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 500px;
+            border: 2px solid #4a6fa5;
+        }
+        .play-btn {
+            background: #4a6fa5;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 10px;
+            transition: 0.3s;
+        }
+        .play-btn:hover {
+            background: #345d8c;
+            transform: scale(1.05);
+        }
+        .status {
+            margin: 15px;
+            padding: 10px;
+            background: #e8f4f8;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to My Service Website</h1>
+    
+    <div class="music-box">
+        <h2>🎵 Background Music Test</h2>
+        
+        <div class="status" id="status">Click PLAY to test audio</div>
+        
+        <!-- AUDIO ELEMENT -->
+        <audio id="music" loop>
+            <!-- Try multiple sources -->
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+            <source src="https://assets.mixkit.co/music/preview/mixkit-tech-house-vibes-130.mp3" type="audio/mpeg">
+            Your browser doesn't support audio.
+        </audio>
+        
+        <!-- CONTROLS -->
+        <div>
+            <button class="play-btn" onclick="playMusic()">▶ PLAY Music</button>
+            <button class="play-btn" onclick="pauseMusic()">⏸ PAUSE</button>
+            <button class="play-btn" onclick="stopMusic()">⏹ STOP</button>
+        </div>
+        
+        <br>
+        <label>Volume: <span id="volumeLevel">50%</span></label>
+        <input type="range" min="0" max="100" value="50" 
+               oninput="changeVolume(this.value)" style="width: 80%;">
+        
+        <div style="margin-top: 20px; font-size: 14px; color: #666;">
+            <p><strong>Troubleshooting:</strong></p>
+            <p>1. Check computer volume 🔊</p>
+            <p>2. Check browser tab isn't muted 🔇</p>
+            <p>3. Try headphones if no sound</p>
+        </div>
+    </div>
+    
+    <h2>Our Services</h2>
+    <p>We create beautiful, functional websites using modern HTML, CSS, and JavaScript.</p>
+
+    <script>
+        const audio = document.getElementById('music');
+        const status = document.getElementById('status');
+        const volumeLevel = document.getElementById('volumeLevel');
+        
+        // Set initial volume
+        audio.volume = 0.5;
+        
+        function playMusic() {
+            audio.play()
+                .then(() => {
+                    status.innerHTML = "✅ Playing: SoundHelix Song 1";
+                    status.style.background = "#d4edda";
+                    status.style.color = "#155724";
+                })
+                .catch(error => {
+                    status.innerHTML = "❌ Error: " + error.message;
+                    status.style.background = "#f8d7da";
+                    status.style.color = "#721c24";
+                    console.log("Play error:", error);
+                    
+                    // Try alternative source
+                    if (error.message.includes("failed")) {
+                        status.innerHTML += "<br>⚠️ Trying alternative source...";
+                        // You can add code to switch sources here
+                    }
+                });
+        }
+        
+        function pauseMusic() {
+            audio.pause();
+            status.innerHTML = "⏸ Music Paused";
+            status.style.background = "#fff3cd";
+            status.style.color = "#856404";
+        }
+        
+        function stopMusic() {
+            audio.pause();
+            audio.currentTime = 0;
+            status.innerHTML = "⏹ Music Stopped";
+            status.style.background = "#f0f8ff";
+            status.style.color = "#004085";
+        }
+        
+        function changeVolume(value) {
+            audio.volume = value / 100;
+            volumeLevel.textContent = value + "%";
+        }
+        
+        // Debug info
+        console.log("Audio readyState:", audio.readyState);
+        console.log("Audio src:", audio.currentSrc);
+        
+        // Auto-play attempt with user interaction
+        document.addEventListener('click', function firstClick() {
+            // Uncomment below if you want auto-play on first click
+            // playMusic();
+            document.removeEventListener('click', firstClick);
+        });
+    </script>
+</body>
+</html>
